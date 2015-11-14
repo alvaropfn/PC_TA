@@ -5,30 +5,65 @@ package BankPack;
  */
 public class Terminal implements Runnable
 {
-    public Terminal()
-    {
+    private Bank bank;
+    private int taid;
+    private Client client;
 
+    public Terminal(int taid, Bank bank)
+    {
+        this.taid = taid;
+        this.bank = bank;
+        this.client = null;
     }
-    
+
+    /*
+    * TODO
+    *
+    */
     public void run()
     {
 
     }
 
-    public void doLogin(int OFID, int CTID, int pass)
+    /*
+    * TODO
+    *
+    */
+    public boolean doLogin(int ofid, int card, int pass)
     {
+        Office office = bank.getOffice(ofid);
+        Account account;
 
+        if(office != null)
+        {
+            account = office.getAccount(card);
+        }
+
+        return false;
     }
+
+    /*
+    * TODO
+    *
+    */
     private void checkClientAtendance()
     {
 
     }
 
+    /*
+    * TODO
+    *
+    */
     private void withdraw(float amount)
     {
 
     }
 
+    /*
+    * TODO
+    *
+    */
     private void transfer(float amount)
     {
 
