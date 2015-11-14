@@ -1,69 +1,19 @@
 package BankPack;
 
-import java.util.ArrayList;
-
 /**
  * Created by Alvaro on 11/11/2015.
  */
-public class Office implements Observer
+public class Office
 {
-    Bank bank;
-    int ofid;
-    ArrayList<Terminal> terminals;
-    ArrayList<Account> accounts;
+    int OFID;
 
-    public Office(int ofidt, Bank bank)
+    public Office(int OFID)
     {
-        this.bank = bank;
-        this.ofid = ofid;
-        this.terminals = new ArrayList<Terminal>();
+        this.OFID = OFID;
     }
 
-    /*
-    *todo
-    *
-    */
-    @Override
-    public void update()
+    public int getOFID()
     {
-
-    }
-
-    public int getofid()
-    {
-        return this.ofid;
-    }
-
-    public int addTerminal()
-    {
-        int taid = terminals.size();
-        terminals.add(new Terminal(taid, bank));
-        return taid;
-    }
-
-    public int addAccount()
-    {
-        int acid = terminals.size();
-        terminals.add(new Terminal(acid, bank));
-        return acid;
-    }
-
-    /*
-    *todo
-    *
-    */
-    public Account getAccount(int card)
-    {
-
-        return null;
-    }
-
-    /*
-    *todo
-    *
-    */
-    public int addClient()
-    {
-        return 0;
+        return this.OFID;
     }
 }
