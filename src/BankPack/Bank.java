@@ -1,5 +1,6 @@
 package BankPack;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
@@ -30,9 +31,8 @@ public class Bank extends Observable implements Runnable
         underAttendance = new ArrayList<Client>();
     }
 
-    public static Bank getInstance()
+    public synchronized static Bank getInstance()
     {
-        //if (instance == null){instance = new Bank();}
         return instance;
     }
 
@@ -68,14 +68,43 @@ public class Bank extends Observable implements Runnable
         return null;
     }
 
-    public void printOffices()
+    /**
+     * this method add a client to the bank clients list
+     * @param name the name of the client
+     * @param cpf the unique identificator of the client (not verified yet)
+     * @return client added to the bank
+     */
+    public Client addClient(String name, String cpf)
     {
-        for(Office of : offices)
-        {
-            System.out.println(of.getofid());
-        }
+        int ctid = this.clients.size();
+        clients.add(new Client(name, cpf, ctid));
+
+        return getClient(ctid);
     }
 
+    /**
+     * this metodo is used to get client more fast from bank by the client id
+     * @param ctid the client it's also the index of them in the bank
+     * @return client atached in index id
+     */
+    public Client getClient(int ctid)
+    {
+        Client c = clients.get(ctid);
+        return  c != null ? c: null;
+    }
+
+    /**
+     *  this method is used to get client from bank by the cpf
+     * @param cpf the client cpf
+     * @return client with corresponding cpf
+     */
+    public Client getClient(String cpf)
+    {
+        for(Client c : clients)
+            if(c.getcpf().equals(cpf))return c;
+
+        return null;
+    }
 
 
 

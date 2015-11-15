@@ -12,7 +12,7 @@ public class Terminal implements Runnable
     public Terminal(int taid, Bank bank)
     {
         this.taid = taid;
-        this.bank = bank;
+        this.bank = bank.getInstance();
         this.client = null;
     }
 
@@ -25,18 +25,27 @@ public class Terminal implements Runnable
 
     }
 
-    /*
-    * TODO
-    *
-    */
-    public boolean doLogin(int ofid, int card, int pass)
+    /**
+     *this method is used to test if
+     * @param ofid
+     * @param card
+     * @param pass
+     * @return sucess of the operation
+     */
+    public boolean doLogin(int ofid, String card, int pass)
     {
         Office office = bank.getOffice(ofid);
         Account account;
 
         if(office != null)
         {
-            account = office.getAccount(card);
+            account = office.getAccount(card, pass);
+
+            if(account != null)
+            {
+
+            }
+
         }
 
         return false;

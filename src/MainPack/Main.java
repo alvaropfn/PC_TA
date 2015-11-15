@@ -15,8 +15,6 @@ public class Main
         Bank bank = Bank.getInstance();
 
         Office of = bank.getOffice(bank.addOffice());
-        Client ct = of.getClient(of.addClient());
-
 
 
         System.out.println("acabei!");
