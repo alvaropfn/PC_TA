@@ -64,6 +64,9 @@ public class Office implements Observer
     */
     public int addClient()
     {
-        return 0;
+        bank.getInstance().getClient();
+        int ctid = clients.size();
+        offices.add(new Office(ofid, this));
+        return ofid;
     }
 }
