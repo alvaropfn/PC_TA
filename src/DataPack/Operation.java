@@ -74,4 +74,10 @@ public class Operation
         this.amount = amount;
         tacc = new TransferedAccOther(acidOther, bank);
     }
+
+    public void print()
+    {
+
+
+    }
 }

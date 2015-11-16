@@ -1,5 +1,6 @@
 package BankPack;
 
+import DataPack.Year;
 import RulesPack.Rules;
 
 import java.util.ArrayList;
@@ -10,13 +11,15 @@ import java.util.ArrayList;
  * this class is used to link a client to a office in the bank system
  */
 public class Account {
-    Bank bank;
-    int acid;
-    int ofid;
-    int pass;
+    private Bank bank;
+    private int acid;
+    private int ofid;
+    private int pass;
+    private float funds;
 
-    ArrayList<String> cards;
-    ArrayList<Client> clients;
+    private ArrayList<Year> years;
+    private ArrayList<String> cards;
+    private ArrayList<Client> clients;
 
     public Account(Bank bank, Office office, int pass, Client client)
     {
@@ -24,6 +27,8 @@ public class Account {
         this.ofid = office.getofid();
         this.pass = pass;               //this password is unic for account
         this.addClient(client);         //number off cards of the first client
+        this.funds = 0.2f;
+
     }
 
     /**
@@ -34,7 +39,8 @@ public class Account {
     public boolean addClient(Client c)
     {
         //to many clients in this account
-        if (clients.size() == Rules.getMaxClients()) return false;
+        if(!Rules.lessThemMaxClients(clients.size())) return false;
+
         clients.add(c);
         return this.addcard(c);
     }
@@ -102,5 +108,18 @@ public class Account {
 
         return null;
     }
+
+    public int getAcid()
+    {return this.acid;}
+
+    public int getOfid()
+    {return this.ofid;}
+
+    public synchronized float getFunds()
+    {return this.funds;}
+
+    public synchronized int getClientsSize()
+    {return clients.size();}
+
 
 }

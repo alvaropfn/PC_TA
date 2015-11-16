@@ -2,6 +2,7 @@ package BankPack;
 
 import DataPack.OPEnum;
 import DataPack.Operation;
+import RulesPack.Rules;
 
 /**
  * Created by Alvaro on 11/11/2015.
@@ -13,8 +14,8 @@ public class Terminal extends Thread
 
     private Client client;
     private Account account;
-
-    boolean inUse;
+    private String card;
+    private boolean inUse;
 
     public Terminal(int taid, Bank bank)
     {
@@ -56,6 +57,7 @@ public class Terminal extends Thread
                 if(! bank.getInstance().checkUnderAttendance(client))
                 {
                     bank.getInstance().addUnderAttendance(client);
+                    this.card = card;
                     inUse = true;
                     return inUse;
                 }
@@ -80,15 +82,34 @@ public class Terminal extends Thread
     }
 
     /*todo*/
-    //public Operation(OPEnum op, String taid, String ofid, String acid, String card, float amount, String acidOther, String bank)
-    public boolean transfer(OPEnum op, float amount )
+    /*
+    OPEnum op,
+    String taid,
+    String ofid,
+    String acid,
+    String card,
+    float amount,
+    -String acidOther,
+    --String bank
+     */
+
+    public synchronized boolean transfer(OPEnum op, float amount )
     {
+        float f = account.getFunds();
+        if(amount < f && Rules.lessThemMaxTransferAmount(f))
+        {
+            String taid = "" + this.taid;
+            String ofid = "" + account.getOfid();
+            String acid = "" + account.getAcid();
+            new Operation(op, taid, ofid, acid, card, amount);
+        }
         return false;
     }
 
 
     private void logout()
     {
+        card = "";
         inUse = false;
         client = null;
         account = null;
