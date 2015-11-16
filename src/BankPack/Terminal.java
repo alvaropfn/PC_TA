@@ -3,7 +3,7 @@ package BankPack;
 /**
  * Created by Alvaro on 11/11/2015.
  */
-public class Terminal implements Runnable
+public class Terminal extends Thread
 {
     private Bank bank;
     private int taid;
