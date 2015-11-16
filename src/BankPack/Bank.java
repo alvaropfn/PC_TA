@@ -106,8 +106,27 @@ public class Bank extends Observable implements Runnable
         return null;
     }
 
+    /**
+     * this method is used to check if a client is under attendance
+     * @param client client to be checked
+     * @return true if client is alrady logged
+     */
+    public boolean checkUnderAttendance(Client client)
+    {
+        for(Client c : underAttendance)
+            if(c.getcpf().equals(client.getcpf())) return true;
 
+        return false;
+    }
 
+    public synchronized void addUnderAttendance(Client client)
+    {
+        underAttendance.add(client);
+    }
 
+    public synchronized void delUnderAttendance(Client client)
+    {
+        underAttendance.remove(client);
+    }
 
 }

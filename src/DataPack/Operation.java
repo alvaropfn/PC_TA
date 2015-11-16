@@ -5,7 +5,7 @@ package DataPack;
  */
 public class Operation
 {
-    int op;         //cod of operation realized
+    OPEnum op;         //cod of operation realized
     String taid;    //terminal operated
     String ofid;    //office of terminal
     String acid;    //account
@@ -22,7 +22,7 @@ public class Operation
      * @param card the card number of then made the transfer
      * @param amount the amount to be transfered
      */
-    public Operation(int op, String taid, String ofid, String acid, String card, float amount)
+    public Operation(OPEnum op, String taid, String ofid, String acid, String card, float amount)
     {
         this.op = op;
         this.taid = taid;
@@ -42,7 +42,7 @@ public class Operation
      * @param amount the amount to be transfered
      * @param acidOther the account id to be transfered
      */
-    public Operation(int op, String taid, String ofid, String acid, String card, float amount, String acidOther)
+    public Operation(OPEnum op, String taid, String ofid, String acid, String card, float amount, String acidOther)
     {
         this.op = op;
         this.taid = taid;
@@ -64,7 +64,7 @@ public class Operation
      * @param acidOther the account id to be transfered
      * @param bank the name of the other bank
      */
-    public Operation(int op, String taid, String ofid, String acid, String card, float amount, String acidOther, String bank)
+    public Operation(OPEnum op, String taid, String ofid, String acid, String card, float amount, String acidOther, String bank)
     {
         this.op = op;
         this.taid = taid;
